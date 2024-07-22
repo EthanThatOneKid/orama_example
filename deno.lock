@@ -2,7 +2,13 @@
   "version": "3",
   "packages": {
     "specifiers": {
+      "jsr:@fartlabs/rt@^0.0.3": "jsr:@fartlabs/rt@0.0.3",
       "npm:@orama/orama@^2.0.21": "npm:@orama/orama@2.0.21"
+    },
+    "jsr": {
+      "@fartlabs/rt@0.0.3": {
+        "integrity": "a94851f8a185f64b884120bb1d53fb203b62e8f98a27879ffa615560ef6ba806"
+      }
     },
     "npm": {
       "@orama/orama@2.0.21": {
@@ -14,6 +20,7 @@
   "remote": {},
   "workspace": {
     "dependencies": [
+      "jsr:@fartlabs/rt@^0.0.3",
       "npm:@orama/orama@^2.0.21"
     ]
   }

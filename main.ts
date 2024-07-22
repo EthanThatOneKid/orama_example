@@ -1,5 +1,6 @@
-import type { ExtractSchema } from "@orama/orama";
+import type { ExtractSchema, Orama } from "@orama/orama";
 import { create, insert, search } from "@orama/orama";
+import { createRouter } from "@fartlabs/rt";
 import CLASS_DATA from "./classes.json" with { type: "json" };
 import PROPERTY_DATA from "./properties.json" with { type: "json" };
 
@@ -32,13 +33,25 @@ for (const doc of CLASS_DATA) {
   await insert(classDb, doc as never);
 }
 
-const propertyResult = await search(
-  propertyDb,
-  { term: "movie" },
-);
-const classResult = await search(
-  classDb,
-  { term: "movie" },
-);
+async function handleSearch<T>(url: URL, db: Orama<T>): Promise<Response> {
+  const term = url.searchParams.get("term");
+  if (!term) {
+    return new Response("Missing term", { status: 400 });
+  }
 
-console.log({ propertyResult, classResult });
+  const searchResult = await search(db, { term });
+  return new Response(
+    JSON.stringify(searchResult),
+    {
+      headers: { "content-type": "application/json" },
+    },
+  );
+}
+
+const router = createRouter()
+  .get("/properties", (ctx) => handleSearch(ctx.url, propertyDb))
+  .get("/classes", (ctx) => handleSearch(ctx.url, classDb));
+
+if (import.meta.main) {
+  Deno.serve((request) => router.fetch(request));
+}

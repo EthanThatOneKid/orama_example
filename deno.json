@@ -2,5 +2,8 @@
   "tasks": {
     "dev": "deno run -A --watch main.ts"
   },
-  "imports": { "@orama/orama": "npm:@orama/orama@^2.0.21" }
+  "imports": {
+    "@fartlabs/rt": "jsr:@fartlabs/rt@^0.0.3",
+    "@orama/orama": "npm:@orama/orama@^2.0.21"
+  }
 }
