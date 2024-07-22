@@ -1,0 +1,20 @@
+{
+  "version": "3",
+  "packages": {
+    "specifiers": {
+      "npm:@orama/orama@^2.0.21": "npm:@orama/orama@2.0.21"
+    },
+    "npm": {
+      "@orama/orama@2.0.21": {
+        "integrity": "sha512-XZpyjyNw4Mcpg94+gUvxmyyiFTZAdXvJ1aFPqHABarofu86oNwZL5tQUIj84xa1lrQiaeSxNKNBw0w4y5We5Yg==",
+        "dependencies": {}
+      }
+    }
+  },
+  "remote": {},
+  "workspace": {
+    "dependencies": [
+      "npm:@orama/orama@^2.0.21"
+    ]
+  }
+}
